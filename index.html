@@ -1,0 +1,445 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Safe Guard with Kafka Gateway</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.min.css">
+    <link rel="stylesheet" href="./dist/theme/mine.css" id="theme">
+
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section data-markdown data-separator="---" data-separator-vertical="^\n--\n$">
+            <script type="text/template">
+
+# Safeguarding Kafka
+## April 2023
+## Devoxx*FR*
+
+--
+
+<!--.slide: data-state="black-bg" -->
+# Speakers
+
+--
+
+# *Florent*
+# Ex Confluent
+# *Conduktor*
+# Geek
+# *@framiere*
+
+--
+
+# *Jean-Louis*
+# Ex Confluent
+# *Conduktor*
+# Über Geek
+# *@jlboudart*
+
+---
+
+# Let's get straight into the most 
+# *common issues*
+
+--
+
+# *topic name*
+## Or how to make a *mess*
+
+--
+
+# *nb partition*
+## Or how to *waste* a precious ressource
+
+--
+
+# *retention*
+## Or how to *waste* a storage
+
+--
+
+# *ack != all*
+## Or how to *loose* data
+
+--
+
+# *in.isr*
+## Or how to loose data *again*
+
+--
+
+# *linger.ms*
+## Or how to be *slow* and *penalize* kafka
+
+--
+
+# *compression.codec*
+## Or how to *waste* storage and network
+
+--
+
+# *poison pill*
+## Or how to fail *miserably*
+
+--
+
+# *invalid schema*
+## Or how to fail miserably *again*
+
+--
+
+# *latency*
+## Or how to fail at *kstream* or *ksqlDB* at the worst time
+
+--
+
+# *fetch.min.bytes*
+## Or how to be a *smart ass* and breaking kafka
+
+--
+
+# *duplicates*
+## Or how to discover you're not *idempotent*
+
+--
+
+# *rebalance storm*
+## Or how to discover you're *half-alive*
+
+--
+
+# *old version*
+## Or how to play with *fire*
+
+--
+
+# *over transacting*
+## Or how to not understand *transactions*
+
+---
+
+
+<!--.slide: data-state="black-bg" -->
+# TLDR
+
+--
+
+# Kafka is awesome
+# *+ Lack of experience* <!-- .element: class="fragment" -->
+# + Explosive growth <!-- .element: class="fragment" -->
+# *= Expensive complex state* <!-- .element: class="fragment" -->
+
+---
+
+<!--.slide: data-state="black-bg" -->
+# So, *what* can we do?
+
+--
+
+# If we can’t *trust* humans
+# If we can’t *touch* Kafka
+
+--
+
+# Your *only* option is
+# *adding magic*  <!-- .element: class="fragment" -->
+# ... between clients and Kafka! <!-- .element: class="fragment" -->
+
+--
+
+<!--.slide: data-state="black-bg" -->
+# Why?
+
+--
+
+# To add the features Kafka is *currently lacking*
+
+--
+
+# How?
+
+--
+
+# By extending the *Apache Kafka Protocol*
+
+--
+
+# Tell me *more*!
+
+--
+
+# Enter https://kafka.apache.org/protocol
+
+--
+
+# Is this a thing?
+
+--
+
+# *Conduktor playground*
+# handles more than 
+# 4000 *isolated* tenants
+# ... on a *single* cluster!
+
+--
+
+# *Conduktor playground*
+# It is an Apache Kafka 
+# *Gateway*
+
+--
+
+# Is there *other* such products out there?
+
+--
+
+# GrepLabs <a href="https://github.com/grepplabs/kafka-proxy">➚</a>
+# *Envoy <a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/listeners/network_filters/kafka_broker_filter">➚</a>* <!-- .element: class="fragment" -->
+# Dajudge <a href="https://github.com/dajudge/kafkaproxy">➚</a> <!-- .element: class="fragment" -->
+# *EventHub for Kafka* <a href="https://learn.microsoft.com/en-us/azure/event-hubs/azure-event-hubs-kafka-overview">➚</a> <!-- .element: class="fragment" -->
+
+---
+
+<!--.slide: data-state="black-bg" -->
+# Building a *Kafka* proxy
+# :)
+
+--
+
+# It's easy
+<pre>
+    <code class="language-plantuml">
+        @startuml
+        autonumber
+        skinparam handwritten true
+        actor Client
+        control Kafka
+        Client -> Kafka : Send data
+        Client -> Kafka : Consume data
+        @enduml
+    </code>
+</pre>
+
+--
+
+# Cluster Metadata
+<pre>
+    <code class="language-plantuml">
+        @startuml
+        autonumber
+        skinparam handwritten true
+        actor Client
+        control Broker1
+        control Broker2
+        control Broker3
+        Client -> Broker1 : Hello!
+        Broker1 -> Client : Hi there! I'm here with my other broker buddies!
+        Client -> Client : Where shall I send this data?
+        Client -> Broker3 : Send data
+        @enduml
+    </code>
+</pre>
+
+--
+
+# Let's add a proxy 
+### *(yes, you can spare 2 or 3 ms)*
+<pre>
+    <code class="language-plantuml">
+        @startuml
+        autonumber
+        skinparam handwritten true
+        actor Client
+        control Proxy
+        control Broker1
+        control Broker2
+        control Broker3
+        Client -> Proxy : Hello!
+        Proxy -> Broker1 : Hello!
+        Broker1 -> Proxy : Hi there! The cluster is broker1:9092, broker2:9092, broker3:9092
+        Proxy -> Client : Hi there! The cluster is broker1:9092, broker2:9092, broker3:9092
+        Client -> Client : Where shall I send this data?
+        Client -> Broker3 : Send data
+        Client -> Client : Damned my proxy is not used!
+        @enduml
+    </code>
+</pre>
+
+--
+
+# *Rewriting* metadata
+<pre>
+    <code class="language-plantuml">
+        @startuml
+        autonumber
+        skinparam handwritten true
+        actor Client
+        control Proxy
+        control Broker1
+        control Broker2
+        control Broker3
+        Client -> Proxy : Hello!
+        Proxy -> Broker1 : Hello!
+        Broker1 -> Proxy : Hi there! The cluster is broker1:9092, broker2:9092, broker3:9092
+        Proxy -> Client : Hi there! The cluster is proxy:6969, proxy:6970, proxy:7071
+        Client -> Client : Where shall I send this data?
+        Client -> Proxy : Send data to proxy:6971
+        Proxy -> Broker3 : Send data to proxy:6971
+        Client -> Client : Hourray!
+        @enduml
+    </code>
+</pre>
+
+--
+
+
+# Oh ... *interesting* ...
+# *What else can we do?* <!-- .element: class="fragment" -->
+
+--
+
+# Create topic *policy*
+## *naming convention* <!-- .element: class="fragment" -->
+## nb partitions <!-- .element: class="fragment" -->
+## *min.isr* <!-- .element: class="fragment" -->
+## replication factor <!-- .element: class="fragment" -->
+## *retention* <!-- .element: class="fragment" -->
+
+--
+
+# Same for *alter* topic!
+
+--
+
+# Produce *checks*
+## ack <!-- .element: class="fragment" -->
+## *headers* <!-- .element: class="fragment" -->
+## compression <!-- .element: class="fragment" -->
+## *schema* <!-- .element: class="fragment" -->
+## batch.size <!-- .element: class="fragment" -->
+
+--
+
+# Consume *checks*
+## limit client <!-- .element: class="fragment" -->
+## *limit connections* <!-- .element: class="fragment" -->
+## limit offset commit <!-- .element: class="fragment" -->
+## *limit join group* <!-- .element: class="fragment" -->
+
+---
+
+<!--.slide: data-state="black-bg" -->
+# Where's the *catch*?
+
+--
+
+# *Gateway* is Stateless
+## Because Kafka *is* state
+
+--
+
+# *Gateway* Scales
+## Because gateway is *stateless*
+
+--
+
+# *Gateway* is Resilient
+## Because kafka protocol is *awesome*
+
+--
+
+# *Gateway* is Performant
+## Because we're just rewriting *verbs*
+
+---
+
+# Gateway enables you to 
+# *rethink* your Kafka experience
+
+--
+
+# Without a kafka gateway you are *doomed to eat dirt*
+
+--
+
+# We open-sourced a gateway you can *extend*
+
+--
+
+# Conduktor Gateway is the *ready to used* version of this talk for $
+
+--
+
+# Safeguard
+# *Audit* <!-- .element: class="fragment" -->
+# Data Masking <!-- .element: class="fragment" -->
+# *Virtual Cluster* <!-- .element: class="fragment" -->
+# Rbac <!-- .element: class="fragment" -->
+# *Transformation* <!-- .element: class="fragment" -->
+
+--
+
+# Chaos
+# *Encryption* <!-- .element: class="fragment" -->
+# Caching <!-- .element: class="fragment" -->
+# *Claim Check* <!-- .element: class="fragment" -->
+# Concentration <!-- .element: class="fragment" -->
+
+--
+
+# github.com/conduktor/conduktor-proxy-demos
+
+
+---
+
+
+<!--.slide: data-state="black-bg" -->
+# One *last* thing...
+
+--
+
+# If you go the gateway route
+# don't forget Connect and Schema Registry
+
+
+---
+
+
+            </script>
+        </section>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script src="./dist/reveal.js"></script>
+<script src="./plugin/notes/notes.js"></script>
+<script src="./plugin/markdown/markdown.js"></script>
+<script src="./plugin/highlight/highlight.js"></script>
+<script src="./plugin/reveal.js-plantuml/reveal-plantuml.js"></script>
+<script src="./plugin/reveal.js-extrernal-code/externalcode.js"></script>
+
+<script>
+Reveal.initialize({
+ plantuml: {
+      serverPath: 'https://plantuml.com/plantuml/svg/'
+  } ,
+  hash: true,
+  plugins: [Externalcode, RevealMarkdown, RevealHighlight, RevealNotes]
+})
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

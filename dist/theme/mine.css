@@ -1,0 +1,840 @@
+/**
+ * Black theme for reveal.js. This is the opposite of the 'white' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+@import url(./fonts/montserrat/montserrat.css);
+/**
+ * Solarized colors by Ethan Schoonover
+ */
+html * {
+  color-profile: sRGB;
+  rendering-intent: auto; }
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+:root {
+  --background-color: #173361;
+  --main-font: Montserrat, Helvetica, sans-serif;
+  --main-font-size: 24px;
+  --main-color: #81CFE2;
+  --block-margin: 20px;
+  --heading-margin: 0 0 20px 0;
+  --heading-font: Montserrat, Helvetica, sans-serif;
+  --heading-color: #38CCED;
+  --heading-line-height: 1.2;
+  --heading-letter-spacing: normal;
+  --heading-text-transform: none;
+  --heading-text-shadow: none;
+  --heading-font-weight: 700;
+  --heading1-text-shadow: none;
+  --heading1-size: 2.4em;
+  --heading2-size: 1.6em;
+  --heading3-size: 1.4em;
+  --heading4-size: 1.3em;
+  --code-font: monospace;
+  --link-color: #829494;
+  --link-color-hover: #b9c3c3;
+  --selection-background-color: #D8365D;
+  --selection-color: #fff; }
+
+.reveal-viewport {
+  background: #173361;
+  background-color: #173361; }
+
+.reveal {
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: normal;
+  color: #81CFE2; }
+
+.reveal ::selection {
+  color: #fff;
+  background: #D8365D;
+  text-shadow: none; }
+
+.reveal ::-moz-selection {
+  color: #fff;
+  background: #D8365D;
+  text-shadow: none; }
+
+.reveal .slides section,
+.reveal .slides section > section {
+  line-height: 1.3;
+  font-weight: inherit; }
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: 0 0 20px 0;
+  color: #38CCED;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: none;
+  text-shadow: none;
+  word-wrap: break-word; }
+
+.reveal h1 {
+  font-size: 2.4em; }
+
+.reveal h2 {
+  font-size: 1.6em; }
+
+.reveal h3 {
+  font-size: 1.4em; }
+
+.reveal h4 {
+  font-size: 1.3em; }
+
+.reveal h1 {
+  text-shadow: none; }
+
+/*********************************************
+ * OTHER
+ *********************************************/
+.reveal p {
+  margin: 20px 0;
+  line-height: 1.3; }
+
+/* Remove trailing margins after titles */
+.reveal h1:last-child,
+.reveal h2:last-child,
+.reveal h3:last-child,
+.reveal h4:last-child,
+.reveal h5:last-child,
+.reveal h6:last-child {
+  margin-bottom: 0; }
+
+/* Ensure certain elements are never larger than the slide itself */
+.reveal img,
+.reveal video,
+.reveal iframe {
+  max-width: 95%;
+  max-height: 95%; }
+
+.reveal strong,
+.reveal b {
+  font-weight: bold; }
+
+.reveal em {
+  font-style: italic; }
+
+.reveal ol,
+.reveal dl,
+.reveal ul {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em; }
+
+.reveal ol {
+  list-style-type: decimal; }
+
+.reveal ul {
+  list-style-type: disc; }
+
+.reveal ul ul {
+  list-style-type: square; }
+
+.reveal ul ul ul {
+  list-style-type: circle; }
+
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ol,
+.reveal ol ul {
+  display: block;
+  margin-left: 40px; }
+
+.reveal dt {
+  font-weight: bold; }
+
+.reveal dd {
+  margin-left: 40px; }
+
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: 70%;
+  margin: 20px auto;
+  padding: 5px;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
+
+.reveal blockquote p:first-child,
+.reveal blockquote p:last-child {
+  display: inline-block; }
+
+.reveal q {
+  font-style: italic; }
+
+.reveal pre {
+  display: block;
+  position: relative;
+  width: 90%;
+  margin: 20px auto;
+  text-align: left;
+  font-size: 0.55em;
+  font-family: monospace;
+  line-height: 1.2em;
+  word-wrap: break-word;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15); }
+
+.reveal code {
+  font-family: monospace;
+  text-transform: none; }
+
+.reveal pre code {
+  display: block;
+  padding: 5px;
+  overflow: auto;
+  max-height: 400px;
+  word-wrap: normal; }
+
+.reveal table {
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.reveal table th {
+  font-weight: bold; }
+
+.reveal table th,
+.reveal table td {
+  text-align: left;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-bottom: 1px solid; }
+
+.reveal table th[align="center"],
+.reveal table td[align="center"] {
+  text-align: center; }
+
+.reveal table th[align="right"],
+.reveal table td[align="right"] {
+  text-align: right; }
+
+.reveal table tbody tr:last-child th,
+.reveal table tbody tr:last-child td {
+  border-bottom: none; }
+
+.reveal sup {
+  vertical-align: super;
+  font-size: smaller; }
+
+.reveal sub {
+  vertical-align: sub;
+  font-size: smaller; }
+
+.reveal small {
+  display: inline-block;
+  font-size: 0.6em;
+  line-height: 1.2em;
+  vertical-align: top; }
+
+.reveal small * {
+  vertical-align: top; }
+
+.reveal img {
+  margin: 20px 0; }
+
+/*********************************************
+ * LINKS
+ *********************************************/
+.reveal a {
+  color: #829494;
+  text-decoration: none;
+  transition: color .15s ease; }
+
+.reveal a:hover {
+  color: #b9c3c3;
+  text-shadow: none;
+  border: none; }
+
+.reveal .roll span:after {
+  color: #fff;
+  background: #5d6d6d; }
+
+/*********************************************
+ * Frame helper
+ *********************************************/
+.reveal .r-frame {
+  border: 4px solid #81CFE2;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.reveal a .r-frame {
+  transition: all .15s linear; }
+
+.reveal a:hover .r-frame {
+  border-color: #829494;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+.reveal .controls {
+  color: #829494; }
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2);
+  color: #829494; }
+
+/*********************************************
+ * PRINT BACKGROUND
+ *********************************************/
+@media print {
+  .backgrounds {
+    background-color: #173361; } }
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+:root {
+  --background-color: #173361;
+  --main-font: Montserrat, Helvetica, sans-serif;
+  --main-font-size: 24px;
+  --main-color: #81CFE2;
+  --block-margin: 20px;
+  --heading-margin: 0 0 20px 0;
+  --heading-font: Montserrat, Helvetica, sans-serif;
+  --heading-color: #38CCED;
+  --heading-line-height: 1.2;
+  --heading-letter-spacing: normal;
+  --heading-text-transform: none;
+  --heading-text-shadow: none;
+  --heading-font-weight: 700;
+  --heading1-text-shadow: none;
+  --heading1-size: 2.4em;
+  --heading2-size: 1.6em;
+  --heading3-size: 1.4em;
+  --heading4-size: 1.3em;
+  --code-font: monospace;
+  --link-color: #829494;
+  --link-color-hover: #b9c3c3;
+  --selection-background-color: #D8365D;
+  --selection-color: #fff; }
+
+.icon {
+  display: inline-block;
+  width: 2em; }
+  .icon > img {
+    margin: 0; }
+
+/* mermaid font */
+.mermaid {
+  font-family: "Montserrat", Helvetica, sans-serif;
+  width: 100%; }
+
+/* specimen font */
+.specimen {
+  font-size: 0.5em;
+  width: 100%; }
+  .specimen .pq-code-container {
+    display: none; }
+  .specimen .specimen-controls {
+    clear: both; }
+
+.reveal-viewport {
+  transition: background-color 0.5s ease;
+  background-color: #173361; }
+  .reveal-viewport, .reveal-viewport p, .reveal-viewport li, .reveal-viewport ul, .reveal-viewport ol, .reveal-viewport h4, .reveal-viewport h5, .reveal-viewport h6 {
+    color: #81CFE2; }
+  .reveal-viewport h1, .reveal-viewport h2, .reveal-viewport h3 {
+    color: #38CCED; }
+    .reveal-viewport h1 em, .reveal-viewport h1 strong, .reveal-viewport h2 em, .reveal-viewport h2 strong, .reveal-viewport h3 em, .reveal-viewport h3 strong {
+      color: white; }
+  .reveal-viewport ol li, .reveal-viewport ul li {
+    border-color: white; }
+    .reveal-viewport ol li::marker, .reveal-viewport ul li::marker {
+      color: white; }
+  .reveal-viewport table thead, .reveal-viewport table th {
+    color: #38CCED;
+    border-color: #00AFBA; }
+  .reveal-viewport table tr:hover, .reveal-viewport table tr.hover {
+    background-color: #0474a2;
+    color: white;
+    border-color: #00AFBA; }
+    .reveal-viewport table tr:hover td, .reveal-viewport table tr.hover td {
+      color: white; }
+  .reveal-viewport table td {
+    color: #81CFE2;
+    border-color: #0074A2; }
+  .reveal-viewport.black-bg {
+    background-color: black !important; }
+    .reveal-viewport.black-bg, .reveal-viewport.black-bg p, .reveal-viewport.black-bg li, .reveal-viewport.black-bg ul, .reveal-viewport.black-bg ol, .reveal-viewport.black-bg h4, .reveal-viewport.black-bg h5, .reveal-viewport.black-bg h6 {
+      color: #81CFE2; }
+    .reveal-viewport.black-bg h1, .reveal-viewport.black-bg h2, .reveal-viewport.black-bg h3 {
+      color: #38CCED; }
+      .reveal-viewport.black-bg h1 em, .reveal-viewport.black-bg h1 strong, .reveal-viewport.black-bg h2 em, .reveal-viewport.black-bg h2 strong, .reveal-viewport.black-bg h3 em, .reveal-viewport.black-bg h3 strong {
+        color: white; }
+    .reveal-viewport.black-bg ol li, .reveal-viewport.black-bg ul li {
+      border-color: white; }
+      .reveal-viewport.black-bg ol li::marker, .reveal-viewport.black-bg ul li::marker {
+        color: white; }
+    .reveal-viewport.black-bg table thead, .reveal-viewport.black-bg table th {
+      color: #38CCED;
+      border-color: #00AFBA; }
+    .reveal-viewport.black-bg table tr:hover, .reveal-viewport.black-bg table tr.hover {
+      background-color: #0474a2;
+      color: white;
+      border-color: #00AFBA; }
+      .reveal-viewport.black-bg table tr:hover td, .reveal-viewport.black-bg table tr.hover td {
+        color: white; }
+    .reveal-viewport.black-bg table td {
+      color: #81CFE2;
+      border-color: #0074A2; }
+  .reveal-viewport.denim-bg {
+    background-color: #173361 !important; }
+    .reveal-viewport.denim-bg, .reveal-viewport.denim-bg p, .reveal-viewport.denim-bg li, .reveal-viewport.denim-bg ul, .reveal-viewport.denim-bg ol, .reveal-viewport.denim-bg h4, .reveal-viewport.denim-bg h5, .reveal-viewport.denim-bg h6 {
+      color: #81CFE2; }
+    .reveal-viewport.denim-bg h1, .reveal-viewport.denim-bg h2, .reveal-viewport.denim-bg h3 {
+      color: #38CCED; }
+      .reveal-viewport.denim-bg h1 em, .reveal-viewport.denim-bg h1 strong, .reveal-viewport.denim-bg h2 em, .reveal-viewport.denim-bg h2 strong, .reveal-viewport.denim-bg h3 em, .reveal-viewport.denim-bg h3 strong {
+        color: white; }
+    .reveal-viewport.denim-bg ol li, .reveal-viewport.denim-bg ul li {
+      border-color: white; }
+      .reveal-viewport.denim-bg ol li::marker, .reveal-viewport.denim-bg ul li::marker {
+        color: white; }
+    .reveal-viewport.denim-bg table thead, .reveal-viewport.denim-bg table th {
+      color: #38CCED;
+      border-color: #00AFBA; }
+    .reveal-viewport.denim-bg table tr:hover, .reveal-viewport.denim-bg table tr.hover {
+      background-color: #0474a2;
+      color: white;
+      border-color: #00AFBA; }
+      .reveal-viewport.denim-bg table tr:hover td, .reveal-viewport.denim-bg table tr.hover td {
+        color: white; }
+    .reveal-viewport.denim-bg table td {
+      color: #81CFE2;
+      border-color: #0074A2; }
+  .reveal-viewport.darkcyan-bg {
+    background-color: #0474a2 !important; }
+    .reveal-viewport.darkcyan-bg, .reveal-viewport.darkcyan-bg p, .reveal-viewport.darkcyan-bg li, .reveal-viewport.darkcyan-bg ul, .reveal-viewport.darkcyan-bg ol, .reveal-viewport.darkcyan-bg h4, .reveal-viewport.darkcyan-bg h5, .reveal-viewport.darkcyan-bg h6 {
+      color: #81CFE2; }
+    .reveal-viewport.darkcyan-bg h1, .reveal-viewport.darkcyan-bg h2, .reveal-viewport.darkcyan-bg h3 {
+      color: #38CCED; }
+      .reveal-viewport.darkcyan-bg h1 em, .reveal-viewport.darkcyan-bg h1 strong, .reveal-viewport.darkcyan-bg h2 em, .reveal-viewport.darkcyan-bg h2 strong, .reveal-viewport.darkcyan-bg h3 em, .reveal-viewport.darkcyan-bg h3 strong {
+        color: white; }
+    .reveal-viewport.darkcyan-bg ol li, .reveal-viewport.darkcyan-bg ul li {
+      border-color: white; }
+      .reveal-viewport.darkcyan-bg ol li::marker, .reveal-viewport.darkcyan-bg ul li::marker {
+        color: white; }
+    .reveal-viewport.darkcyan-bg table thead, .reveal-viewport.darkcyan-bg table th {
+      color: #38CCED;
+      border-color: #00AFBA; }
+    .reveal-viewport.darkcyan-bg table tr:hover, .reveal-viewport.darkcyan-bg table tr.hover {
+      background-color: #0474a2;
+      color: white;
+      border-color: #00AFBA; }
+      .reveal-viewport.darkcyan-bg table tr:hover td, .reveal-viewport.darkcyan-bg table tr.hover td {
+        color: white; }
+    .reveal-viewport.darkcyan-bg table td {
+      color: #81CFE2;
+      border-color: #0074A2; }
+  .reveal-viewport.robinsegg-bg {
+    background-color: #B4E1E4 !important; }
+    .reveal-viewport.robinsegg-bg, .reveal-viewport.robinsegg-bg p, .reveal-viewport.robinsegg-bg li, .reveal-viewport.robinsegg-bg ul, .reveal-viewport.robinsegg-bg ol, .reveal-viewport.robinsegg-bg h4, .reveal-viewport.robinsegg-bg h5, .reveal-viewport.robinsegg-bg h6 {
+      color: black; }
+    .reveal-viewport.robinsegg-bg h1, .reveal-viewport.robinsegg-bg h2, .reveal-viewport.robinsegg-bg h3 {
+      color: #173361; }
+      .reveal-viewport.robinsegg-bg h1 em, .reveal-viewport.robinsegg-bg h1 strong, .reveal-viewport.robinsegg-bg h2 em, .reveal-viewport.robinsegg-bg h2 strong, .reveal-viewport.robinsegg-bg h3 em, .reveal-viewport.robinsegg-bg h3 strong {
+        color: #0474a2; }
+    .reveal-viewport.robinsegg-bg ol li, .reveal-viewport.robinsegg-bg ul li {
+      border-color: #0474a2; }
+      .reveal-viewport.robinsegg-bg ol li::marker, .reveal-viewport.robinsegg-bg ol li:before, .reveal-viewport.robinsegg-bg ul li::marker, .reveal-viewport.robinsegg-bg ul li:before {
+        color: #0474a2; }
+    .reveal-viewport.robinsegg-bg table thead, .reveal-viewport.robinsegg-bg table th {
+      color: #38CCED;
+      border-color: #0074A2; }
+    .reveal-viewport.robinsegg-bg table tr:hover, .reveal-viewport.robinsegg-bg table tr.hover {
+      background-color: #E6F5FB;
+      color: white;
+      border-color: #0074A2; }
+      .reveal-viewport.robinsegg-bg table tr:hover td, .reveal-viewport.robinsegg-bg table tr.hover td {
+        color: #0074A2; }
+    .reveal-viewport.robinsegg-bg table td {
+      color: #81CFE2;
+      border-color: #b9c3c3; }
+  .reveal-viewport.powder-bg {
+    background-color: #D7EFF6 !important; }
+    .reveal-viewport.powder-bg, .reveal-viewport.powder-bg p, .reveal-viewport.powder-bg li, .reveal-viewport.powder-bg ul, .reveal-viewport.powder-bg ol, .reveal-viewport.powder-bg h4, .reveal-viewport.powder-bg h5, .reveal-viewport.powder-bg h6 {
+      color: black; }
+    .reveal-viewport.powder-bg h1, .reveal-viewport.powder-bg h2, .reveal-viewport.powder-bg h3 {
+      color: #173361; }
+      .reveal-viewport.powder-bg h1 em, .reveal-viewport.powder-bg h1 strong, .reveal-viewport.powder-bg h2 em, .reveal-viewport.powder-bg h2 strong, .reveal-viewport.powder-bg h3 em, .reveal-viewport.powder-bg h3 strong {
+        color: #0474a2; }
+    .reveal-viewport.powder-bg ol li, .reveal-viewport.powder-bg ul li {
+      border-color: #0474a2; }
+      .reveal-viewport.powder-bg ol li::marker, .reveal-viewport.powder-bg ol li:before, .reveal-viewport.powder-bg ul li::marker, .reveal-viewport.powder-bg ul li:before {
+        color: #0474a2; }
+    .reveal-viewport.powder-bg table thead, .reveal-viewport.powder-bg table th {
+      color: #38CCED;
+      border-color: #0074A2; }
+    .reveal-viewport.powder-bg table tr:hover, .reveal-viewport.powder-bg table tr.hover {
+      background-color: #E6F5FB;
+      color: white;
+      border-color: #0074A2; }
+      .reveal-viewport.powder-bg table tr:hover td, .reveal-viewport.powder-bg table tr.hover td {
+        color: #0074A2; }
+    .reveal-viewport.powder-bg table td {
+      color: #81CFE2;
+      border-color: #b9c3c3; }
+  .reveal-viewport.white-bg {
+    background-color: white !important; }
+    .reveal-viewport.white-bg, .reveal-viewport.white-bg p, .reveal-viewport.white-bg li, .reveal-viewport.white-bg ul, .reveal-viewport.white-bg ol, .reveal-viewport.white-bg h4, .reveal-viewport.white-bg h5, .reveal-viewport.white-bg h6 {
+      color: black; }
+    .reveal-viewport.white-bg h1, .reveal-viewport.white-bg h2, .reveal-viewport.white-bg h3 {
+      color: #173361; }
+      .reveal-viewport.white-bg h1 em, .reveal-viewport.white-bg h1 strong, .reveal-viewport.white-bg h2 em, .reveal-viewport.white-bg h2 strong, .reveal-viewport.white-bg h3 em, .reveal-viewport.white-bg h3 strong {
+        color: #0474a2; }
+    .reveal-viewport.white-bg ol li, .reveal-viewport.white-bg ul li {
+      border-color: #0474a2; }
+      .reveal-viewport.white-bg ol li::marker, .reveal-viewport.white-bg ol li:before, .reveal-viewport.white-bg ul li::marker, .reveal-viewport.white-bg ul li:before {
+        color: #0474a2; }
+    .reveal-viewport.white-bg table thead, .reveal-viewport.white-bg table th {
+      color: #38CCED;
+      border-color: #0074A2; }
+    .reveal-viewport.white-bg table tr:hover, .reveal-viewport.white-bg table tr.hover {
+      background-color: #E6F5FB;
+      color: white;
+      border-color: #0074A2; }
+      .reveal-viewport.white-bg table tr:hover td, .reveal-viewport.white-bg table tr.hover td {
+        color: #0074A2; }
+    .reveal-viewport.white-bg table td {
+      color: #81CFE2;
+      border-color: #b9c3c3; }
+  .reveal-viewport h2, .reveal-viewport h3, .reveal-viewport h4, .reveal-viewport h5, .reveal-viewport h6 {
+    font-weight: 600; }
+  .reveal-viewport h1, .reveal-viewport h2, .reveal-viewport h3, .reveal-viewport h4, .reveal-viewport h5, .reveal-viewport h6, .reveal-viewport p {
+    text-align: left; }
+  .reveal-viewport h4 {
+    font-size: 1.3em; }
+  .reveal-viewport h5 {
+    font-size: 1.2em; }
+  .reveal-viewport h6 {
+    font-size: 1.1em; }
+  .reveal-viewport a:hover {
+    text-decoration: underline; }
+  .reveal-viewport table {
+    width: 100%; }
+    .reveal-viewport table th, .reveal-viewport table td {
+      padding: 0.5em; }
+  .reveal-viewport ol, .reveal-viewport ul {
+    margin: 0 0 0 3em; }
+    .reveal-viewport ol li, .reveal-viewport ul li {
+      padding-bottom: 0.5em;
+      border-style: solid;
+      border-color: white;
+      border-width: 0; }
+      .reveal-viewport ol li em:first-child, .reveal-viewport ol li strong:first-child, .reveal-viewport ul li em:first-child, .reveal-viewport ul li strong:first-child {
+        display: block; }
+      .reveal-viewport ol li::marker, .reveal-viewport ol li:before, .reveal-viewport ul li::marker, .reveal-viewport ul li:before {
+        font-size: 1.2em;
+        font-weight: 700;
+        color: white; }
+  .reveal-viewport ol.agenda-10 {
+    padding: 0;
+    margin: 2em 0 0 0;
+    height: 640px;
+    display: flex;
+    flex-flow: column wrap;
+    counter-reset: agenda-10-counter;
+    list-style: none; }
+    .reveal-viewport ol.agenda-10 li {
+      flex: 0 0 20%;
+      counter-increment: agenda-10-counter;
+      --size: 3em;
+      box-sizing: border-box;
+      padding-left: 1em;
+      margin-left: var(--size);
+      width: calc(50% - (var(--size)));
+      position: relative;
+      border-width: 0 0 0 1px;
+      padding-left: 1em; }
+      .reveal-viewport ol.agenda-10 li:before {
+        display: block;
+        padding: 0 1em 0 0;
+        position: absolute;
+        text-align: right;
+        left: -2.5em;
+        line-height: 1.6em;
+        width: 2em;
+        height: 2em;
+        content: "" counter(agenda-10-counter, decimal-leading-zero) "";
+        font-size: 1.6em;
+        font-weight: 700; }
+  .reveal-viewport ol.agenda-6 {
+    padding: 0;
+    margin: 4em 0 0 0;
+    height: 640px;
+    display: flex;
+    flex-flow: column wrap;
+    counter-reset: agenda-6-counter;
+    list-style: none; }
+    .reveal-viewport ol.agenda-6 li {
+      flex: 0 0 33%;
+      counter-increment: agenda-6-counter;
+      box-sizing: border-box;
+      padding-top: 1em;
+      width: calc(50% - 2em);
+      position: relative;
+      border-width: 1px 0 0 0; }
+      .reveal-viewport ol.agenda-6 li:before {
+        display: block;
+        padding: 0 1em 0 0;
+        position: absolute;
+        text-align: left;
+        top: -1.5em;
+        line-height: 1.6em;
+        width: 2em;
+        height: 2em;
+        content: "" counter(agenda-6-counter, decimal-leading-zero) "";
+        font-size: 1.6em;
+        font-weight: 700; }
+  .reveal-viewport .rounded {
+    border-radius: 0.5em;
+    margin: 0.5em;
+    padding: 0.5em; }
+  .reveal-viewport .reveal.has-light-background, .reveal-viewport .reveal.has-light-background p, .reveal-viewport .reveal.has-light-background li, .reveal-viewport .reveal.has-light-background ul, .reveal-viewport .reveal.has-light-background ol, .reveal-viewport .reveal.has-light-background h4, .reveal-viewport .reveal.has-light-background h5, .reveal-viewport .reveal.has-light-background h6 {
+    color: black; }
+  .reveal-viewport .reveal.has-light-background h1, .reveal-viewport .reveal.has-light-background h2, .reveal-viewport .reveal.has-light-background h3 {
+    color: #173361; }
+    .reveal-viewport .reveal.has-light-background h1 em, .reveal-viewport .reveal.has-light-background h1 strong, .reveal-viewport .reveal.has-light-background h2 em, .reveal-viewport .reveal.has-light-background h2 strong, .reveal-viewport .reveal.has-light-background h3 em, .reveal-viewport .reveal.has-light-background h3 strong {
+      color: #0474a2; }
+  .reveal-viewport .reveal.has-light-background ol li, .reveal-viewport .reveal.has-light-background ul li {
+    border-color: #0474a2; }
+    .reveal-viewport .reveal.has-light-background ol li::marker, .reveal-viewport .reveal.has-light-background ol li:before, .reveal-viewport .reveal.has-light-background ul li::marker, .reveal-viewport .reveal.has-light-background ul li:before {
+      color: #0474a2; }
+  .reveal-viewport .reveal.has-light-background table thead, .reveal-viewport .reveal.has-light-background table th {
+    color: #38CCED;
+    border-color: #0074A2; }
+  .reveal-viewport .reveal.has-light-background table tr:hover, .reveal-viewport .reveal.has-light-background table tr.hover {
+    background-color: #E6F5FB;
+    color: white;
+    border-color: #0074A2; }
+    .reveal-viewport .reveal.has-light-background table tr:hover td, .reveal-viewport .reveal.has-light-background table tr.hover td {
+      color: #0074A2; }
+  .reveal-viewport .reveal.has-light-background table td {
+    color: #81CFE2;
+    border-color: #b9c3c3; }
+  .reveal-viewport .reveal pre {
+    box-shadow: none; }
+  .reveal-viewport .reveal .slides section[data-state*="center"] * {
+    text-align: center; }
+  .reveal-viewport .reveal .slides section[data-state*="center"] * {
+    text-align: center; }
+  .reveal-viewport .reveal .slides section *.left, .reveal-viewport .reveal .slides section .left * {
+    text-align: left; }
+  .reveal-viewport .reveal .slides section *.center, .reveal-viewport .reveal .slides section .center * {
+    text-align: center; }
+  .reveal-viewport .reveal .slides section *.right, .reveal-viewport .reveal .slides section .right * {
+    text-align: right; }
+  .reveal-viewport .reveal .slides section[data-state*="col-"] {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+    align-items: stretch; }
+    .reveal-viewport .reveal .slides section[data-state*="col-"] > * {
+      align-self: flex-start;
+      flex-basis: 100%; }
+    .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote {
+      align-self: stretch;
+      flex: 1 0 20%;
+      background: none;
+      box-shadow: none;
+      font-style: normal;
+      color: inherit; }
+      .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg {
+        background-color: black !important; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg p, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg ul, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg ol, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h4, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h5, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h6 {
+          color: #81CFE2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h1, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h2, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h3 {
+          color: #38CCED; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h1 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h1 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h2 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h2 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h3 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg h3 strong {
+            color: white; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg ol li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg ul li {
+          border-color: white; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg ol li::marker, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg ul li::marker {
+            color: white; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg table thead, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg table th {
+          color: #38CCED;
+          border-color: #00AFBA; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg table tr:hover, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg table tr.hover {
+          background-color: #0474a2;
+          color: white;
+          border-color: #00AFBA; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg table tr:hover td, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg table tr.hover td {
+            color: white; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.black-bg table td {
+          color: #81CFE2;
+          border-color: #0074A2; }
+      .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg {
+        background-color: #173361 !important; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg p, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg ul, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg ol, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h4, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h5, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h6 {
+          color: #81CFE2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h1, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h2, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h3 {
+          color: #38CCED; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h1 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h1 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h2 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h2 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h3 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg h3 strong {
+            color: white; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg ol li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg ul li {
+          border-color: white; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg ol li::marker, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg ul li::marker {
+            color: white; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg table thead, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg table th {
+          color: #38CCED;
+          border-color: #00AFBA; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg table tr:hover, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg table tr.hover {
+          background-color: #0474a2;
+          color: white;
+          border-color: #00AFBA; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg table tr:hover td, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg table tr.hover td {
+            color: white; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.denim-bg table td {
+          color: #81CFE2;
+          border-color: #0074A2; }
+      .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg {
+        background-color: #0474a2 !important; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg p, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg ul, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg ol, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h4, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h5, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h6 {
+          color: #81CFE2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h1, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h2, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h3 {
+          color: #38CCED; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h1 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h1 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h2 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h2 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h3 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg h3 strong {
+            color: white; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg ol li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg ul li {
+          border-color: white; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg ol li::marker, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg ul li::marker {
+            color: white; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg table thead, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg table th {
+          color: #38CCED;
+          border-color: #00AFBA; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg table tr:hover, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg table tr.hover {
+          background-color: #0474a2;
+          color: white;
+          border-color: #00AFBA; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg table tr:hover td, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg table tr.hover td {
+            color: white; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.darkcyan-bg table td {
+          color: #81CFE2;
+          border-color: #0074A2; }
+      .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg {
+        background-color: #B4E1E4 !important; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg p, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg ul, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg ol, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h4, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h5, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h6 {
+          color: black; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h1, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h2, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h3 {
+          color: #173361; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h1 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h1 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h2 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h2 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h3 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg h3 strong {
+            color: #0474a2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg ol li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg ul li {
+          border-color: #0474a2; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg ol li::marker, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg ol li:before, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg ul li::marker, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg ul li:before {
+            color: #0474a2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg table thead, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg table th {
+          color: #38CCED;
+          border-color: #0074A2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg table tr:hover, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg table tr.hover {
+          background-color: #E6F5FB;
+          color: white;
+          border-color: #0074A2; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg table tr:hover td, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg table tr.hover td {
+            color: #0074A2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.robinsegg-bg table td {
+          color: #81CFE2;
+          border-color: #b9c3c3; }
+      .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg {
+        background-color: #D7EFF6 !important; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg p, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg ul, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg ol, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h4, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h5, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h6 {
+          color: black; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h1, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h2, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h3 {
+          color: #173361; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h1 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h1 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h2 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h2 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h3 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg h3 strong {
+            color: #0474a2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg ol li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg ul li {
+          border-color: #0474a2; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg ol li::marker, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg ol li:before, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg ul li::marker, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg ul li:before {
+            color: #0474a2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg table thead, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg table th {
+          color: #38CCED;
+          border-color: #0074A2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg table tr:hover, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg table tr.hover {
+          background-color: #E6F5FB;
+          color: white;
+          border-color: #0074A2; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg table tr:hover td, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg table tr.hover td {
+            color: #0074A2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.powder-bg table td {
+          color: #81CFE2;
+          border-color: #b9c3c3; }
+      .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg {
+        background-color: white !important; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg p, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg ul, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg ol, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h4, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h5, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h6 {
+          color: black; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h1, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h2, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h3 {
+          color: #173361; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h1 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h1 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h2 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h2 strong, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h3 em, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg h3 strong {
+            color: #0474a2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg ol li, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg ul li {
+          border-color: #0474a2; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg ol li::marker, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg ol li:before, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg ul li::marker, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg ul li:before {
+            color: #0474a2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg table thead, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg table th {
+          color: #38CCED;
+          border-color: #0074A2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg table tr:hover, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg table tr.hover {
+          background-color: #E6F5FB;
+          color: white;
+          border-color: #0074A2; }
+          .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg table tr:hover td, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg table tr.hover td {
+            color: #0074A2; }
+        .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote.white-bg table td {
+          color: #81CFE2;
+          border-color: #b9c3c3; }
+      .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote p, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote ol, .reveal-viewport .reveal .slides section[data-state*="col-"] > blockquote ul {
+        display: block; }
+  .reveal-viewport .reveal .backgrounds > .slide-background.present:after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    top: 2vw;
+    left: 100%;
+    transform: translateX(-8vw);
+    width: 6vw;
+    height: 6vw;
+    background-image: url("assets/logo-mark-white.svg");
+    background-size: contain; }
+  .reveal-viewport .reveal .backgrounds > .slide-background.present:first-of-type:after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    top: 20px;
+    left: 0;
+    transform: none;
+    width: 30vw;
+    height: 10vw;
+    background-image: url("assets/logo-logotype-white.svg");
+    background-size: contain;
+    background-repeat: no-repeat; }
+  .reveal-viewport .reveal.robinsegg-bg .reveal > .backgrounds > .slide-background.present:after, .reveal-viewport .reveal.powder-bg .reveal > .backgrounds > .slide-background.present:after, .reveal-viewport .reveal.white-bg .reveal > .backgrounds > .slide-background.present:after {
+    background-image: url("assets/logo-mark-denim.svg"); }
+  .reveal-viewport .reveal.robinsegg-bg .reveal > .backgrounds > .slide-background.present:first-of-type:after, .reveal-viewport .reveal.powder-bg .reveal > .backgrounds > .slide-background.present:first-of-type:after, .reveal-viewport .reveal.white-bg .reveal > .backgrounds > .slide-background.present:first-of-type:after {
+    background-image: url("assets/logo-logotype-denim.svg"); }
+
+/*********************************************
+ * PRINT BACKGROUND
+ *********************************************/
+@media print {
+  .backgrounds {
+    background-color: #173361; } }
