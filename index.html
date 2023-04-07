@@ -298,13 +298,17 @@
 
 --
 
-
 # Oh ... *interesting* ...
-# *What else can we do?* <!-- .element: class="fragment" -->
+# *We can intercept all verbs!* <!-- .element: class="fragment" -->
 
 --
 
-# Create topic *policy*
+# What if you intercept 
+# *CreateTopicsRequest* ?
+
+--
+
+# That's *create topic policy*
 ## *naming convention* <!-- .element: class="fragment" -->
 ## nb partitions <!-- .element: class="fragment" -->
 ## *min.isr* <!-- .element: class="fragment" -->
@@ -313,7 +317,9 @@
 
 --
 
-# Same for *alter* topic!
+# What if you want to intercept 
+# *AlterTopicsRequest* too?
+## Do the same! <!-- .element: class="fragment" -->
 
 --
 
@@ -323,6 +329,8 @@
 ## compression <!-- .element: class="fragment" -->
 ## *schema* <!-- .element: class="fragment" -->
 ## batch.size <!-- .element: class="fragment" -->
+## *keys* <!-- .element: class="fragment" -->
+## headers <!-- .element: class="fragment" -->
 
 --
 
@@ -331,6 +339,10 @@
 ## *limit connections* <!-- .element: class="fragment" -->
 ## limit offset commit <!-- .element: class="fragment" -->
 ## *limit join group* <!-- .element: class="fragment" -->
+
+--
+
+# You can intercept *all* verbs!
 
 ---
 
@@ -385,7 +397,8 @@
 
 --
 
-# Chaos
+# Headers
+# Chaos <!-- .element: class="fragment" -->
 # *Encryption* <!-- .element: class="fragment" -->
 # Caching <!-- .element: class="fragment" -->
 # *Claim Check* <!-- .element: class="fragment" -->
@@ -395,9 +408,7 @@
 
 # github.com/conduktor/conduktor-proxy-demos
 
-
 ---
-
 
 <!--.slide: data-state="black-bg" -->
 # One *last* thing...
