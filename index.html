@@ -14,30 +14,40 @@
 <body>
 <div class="reveal">
     <div class="slides">
-        <section data-markdown data-separator="---" data-separator-vertical="^\n--\n$">
+        <section data-markdown data-separator="---" data-separator-vertical="^\n--\n$" data-state="black-bg">
             <script type="text/template">
+<!-- .slide: class="slide-text-shadow black-bg" data-background-opacity="0.7" data-background-image="https://raw.githubusercontent.com/quantixx/template-presentation/master/images/2023/Backgrounds/image3.jpg" -->
 
-# Safeguarding Kafka
-## April 2023
-## Devoxx*FR*
+# *Safeguarding Kafka*
+## *April 2023*
+## *Devoxx*FR
 
 --
 
-<!--.slide: data-state="black-bg" -->
 # Speakers
 
 --
 
+<div style="float:right; width: 200px">
+    <img style="float: right" src="img/florent_bio.jpg" />
+    <img style="float: right" src="img/conduktor.png" />
+</div>
+
 # *Florent*
-# Ex Confluent
+# Ex-Confluent
 # *Conduktor*
 # Geek
 # *@framiere*
 
 --
 
+<div style="float:right; width: 200px">
+    <img style="float: right" src="img/loulou.png" />
+    <img style="float: right" src="img/conduktor.png" />
+</div>
+
 # *Jean-Louis*
-# Ex Confluent
+# Ex-Confluent
 # *Conduktor*
 # Über Geek
 # *@jlboudart*
@@ -60,7 +70,7 @@
 --
 
 # *retention*
-## Or how to *waste* a storage
+## Or how to *waste* storage
 
 --
 
@@ -69,7 +79,7 @@
 
 --
 
-# *in.isr*
+# *min.isr*
 ## Or how to loose data *again*
 
 --
@@ -81,6 +91,11 @@
 
 # *compression.codec*
 ## Or how to *waste* storage and network
+
+--
+
+# *consumer group* names
+## Or how make *bad magic* appear
 
 --
 
@@ -124,8 +139,6 @@
 
 ---
 
-
-<!--.slide: data-state="black-bg" -->
 # TLDR
 
 --
@@ -137,7 +150,6 @@
 
 ---
 
-<!--.slide: data-state="black-bg" -->
 # So, *what* can we do?
 
 --
@@ -153,7 +165,6 @@
 
 --
 
-<!--.slide: data-state="black-bg" -->
 # Why?
 
 --
@@ -178,7 +189,7 @@
 
 --
 
-# Is this a thing?
+# Is this a *thing*?
 
 --
 
@@ -199,20 +210,19 @@
 
 --
 
-# GrepLabs <a href="https://github.com/grepplabs/kafka-proxy">➚</a>
-# *Envoy <a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/listeners/network_filters/kafka_broker_filter">➚</a>* <!-- .element: class="fragment" -->
-# Dajudge <a href="https://github.com/dajudge/kafkaproxy">➚</a> <!-- .element: class="fragment" -->
-# *EventHub for Kafka* <a href="https://learn.microsoft.com/en-us/azure/event-hubs/azure-event-hubs-kafka-overview">➚</a> <!-- .element: class="fragment" -->
+# GrepLabs <a href="https://github.com/grepplabs/kafka-proxy">#</a>
+# *Envoy <a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/listeners/network_filters/kafka_broker_filter">#</a>*
+# Dajudge <a href="https://github.com/dajudge/kafkaproxy">#</a>
+# *EventHub for Kafka* <a href="https://learn.microsoft.com/en-us/azure/event-hubs/azure-event-hubs-kafka-overview">#</a>
 
 ---
 
-<!--.slide: data-state="black-bg" -->
-# Building a *Kafka* proxy
-# :)
+
+# Building a *Kafka* proxy 
 
 --
 
-# It's easy
+# It's *easy* right?
 <pre>
     <code class="language-plantuml">
         @startuml
@@ -228,7 +238,7 @@
 
 --
 
-# Cluster Metadata
+# Cluster *Metadata*
 <pre>
     <code class="language-plantuml">
         @startuml
@@ -248,32 +258,55 @@
 
 --
 
-# Let's add a proxy 
-### *(yes, you can spare 2 or 3 ms)*
+# Let's add a *gateway*
+### *(_yes_, you can spare 2 or 3 ms)*
 <pre>
     <code class="language-plantuml">
         @startuml
         autonumber
         skinparam handwritten true
         actor Client
-        control Proxy
+        control Gateway
         control Broker1
         control Broker2
         control Broker3
-        Client -> Proxy : Hello!
-        Proxy -> Broker1 : Hello!
-        Broker1 -> Proxy : Hi there! The cluster is broker1:9092, broker2:9092, broker3:9092
-        Proxy -> Client : Hi there! The cluster is broker1:9092, broker2:9092, broker3:9092
+        Client -> Gateway : Hello!
+        Gateway -> Broker1 : Hello!
+        Broker1 -> Gateway : Hi there! The cluster is broker1:9092, broker2:9092, broker3:9092
+        Gateway -> Client : Hi there! The cluster is broker1:9092, broker2:9092, broker3:9092
         Client -> Client : Where shall I send this data?
-        Client -> Broker3 : Send data
-        Client -> Client : Damned my proxy is not used!
         @enduml
     </code>
 </pre>
 
 --
 
-# *Rewriting* metadata
+# Damned! 
+### It *bypassed* my lovely Gateway 
+<pre>
+    <code class="language-plantuml">
+        @startuml
+        autonumber
+        skinparam handwritten true
+        actor Client
+        control Gateway
+        control Broker1
+        control Broker2
+        control Broker3
+        Client -> Gateway : Hello!
+        Gateway -> Broker1 : Hello!
+        Broker1 -> Gateway : Hi there! The cluster is broker1:9092, broker2:9092, broker3:9092
+        Gateway -> Client : Hi there! The cluster is broker1:9092, broker2:9092, broker3:9092
+        Client -> Client : Where shall I send this data?
+        Client -> Broker3 : Send data
+        Client -> Client : Damned my Gateway is not used!
+        @enduml
+    </code>
+</pre>
+
+--
+
+# Let's *rewrite* metadata
 <pre>
     <code class="language-plantuml">
         @startuml
@@ -298,7 +331,13 @@
 
 --
 
-# Oh ... *interesting* ...
+<!--.slide: class="slide-text-shadow" data-background-opacity="0.4" data-background-image="https://images.unsplash.com/photo-1519834785169-98be25ec3f84?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c3VjY2Vzc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"-->
+
+# *Success*!
+
+--
+
+# ... *interesting* ...
 # *We can intercept all verbs!* <!-- .element: class="fragment" -->
 
 --
@@ -308,12 +347,19 @@
 
 --
 
+<img class="r-stretch" src="img/showtime.gif" alt="It's showtime gif" />
+
+--
+
 # That's *create topic policy*
 ## *naming convention* <!-- .element: class="fragment" -->
 ## nb partitions <!-- .element: class="fragment" -->
 ## *min.isr* <!-- .element: class="fragment" -->
 ## replication factor <!-- .element: class="fragment" -->
 ## *retention* <!-- .element: class="fragment" -->
+
+note: https://cwiki.apache.org/confluence/display/KAFKA/KIP-108%3A+Create+Topic+Policy
+
 
 --
 
@@ -330,7 +376,6 @@
 ## *schema* <!-- .element: class="fragment" -->
 ## batch.size <!-- .element: class="fragment" -->
 ## *keys* <!-- .element: class="fragment" -->
-## headers <!-- .element: class="fragment" -->
 
 --
 
@@ -346,7 +391,7 @@
 
 ---
 
-<!--.slide: data-state="black-bg" -->
+
 # Where's the *catch*?
 
 --
@@ -411,7 +456,6 @@
 
 ---
 
-<!--.slide: data-state="black-bg" -->
 # One *last* thing...
 
 --
@@ -419,9 +463,21 @@
 # If you go the gateway route
 # don't forget Connect and Schema Registry
 
-
 ---
 
+<!-- .slide: class="center" data-background-opacity="0.9" data-background-image="https://images.unsplash.com/photo-1524623243236-187b50e18f9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2128&q=80" -->
+
+<div>
+    <h1 style="text-align: center"><strong class="text-shadow">Thanks</strong></h1>
+    <div style="height: 100px">
+        <img src="img/conduktor.png" />
+        <img src="img/florent_bio.jpg" />
+        <img src="img/loulou.png" />
+    <div>
+    <h2 style="text-align: center;">
+        <a style="color: white;" href="https://github.com/conduktor/conduktor-gateway">Conduktor gateway ➚</a>
+    </h2>
+</div>
 
             </script>
         </section>
