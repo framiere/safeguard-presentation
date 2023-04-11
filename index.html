@@ -139,11 +139,11 @@
 
 ---
 
-# TLDR
+# T*L*D*R*
 
 --
 
-# Kafka is awesome
+# Kafka is awesome ❤️️ 
 # *+ Lack of experience* <!-- .element: class="fragment" -->
 # + Explosive growth <!-- .element: class="fragment" -->
 # *= Expensive complex state* <!-- .element: class="fragment" -->
@@ -165,7 +165,7 @@
 
 --
 
-# Why?
+# *Why*?
 
 --
 
@@ -173,7 +173,7 @@
 
 --
 
-# How?
+# *How*?
 
 --
 
@@ -196,13 +196,13 @@
 # *Conduktor playground*
 # handles more than 
 # 4000 *isolated* tenants
-# ... on a *single* cluster!
+# ... on a <!-- .element class="fragment" --> *single* cluster!
 
 --
 
-# *Conduktor playground*
-# It is an Apache Kafka 
-# *Gateway*
+### *Playground* is powered by
+# *Conduktor gateway*
+## A proxy layer over Kafka to add _features_
 
 --
 
@@ -313,17 +313,17 @@
         autonumber
         skinparam handwritten true
         actor Client
-        control Proxy
+        control Gateway
         control Broker1
         control Broker2
         control Broker3
-        Client -> Proxy : Hello!
-        Proxy -> Broker1 : Hello!
-        Broker1 -> Proxy : Hi there! The cluster is broker1:9092, broker2:9092, broker3:9092
-        Proxy -> Client : Hi there! The cluster is proxy:6969, proxy:6970, proxy:7071
+        Client -> Gateway : Hello!
+        Gateway -> Broker1 : Hello!
+        Broker1 -> Gateway : Hi there! The cluster is broker1:9092, broker2:9092, broker3:9092
+        Gateway -> Client : Hi there! The cluster is gateway:6969, gateway:6970, gateway:7071
         Client -> Client : Where shall I send this data?
-        Client -> Proxy : Send data to proxy:6971
-        Proxy -> Broker3 : Send data to proxy:6971
+        Client -> Gateway : Send data to gateway:6971
+        Gateway -> Broker3 : Send data to gateway:6971
         Client -> Client : Hourray!
         @enduml
     </code>
@@ -457,11 +457,6 @@ note: https://cwiki.apache.org/confluence/display/KAFKA/KIP-108%3A+Create+Topic+
 ---
 
 # One *last* thing...
-
---
-
-# If you go the gateway route
-# don't forget Connect and Schema Registry
 
 ---
 
