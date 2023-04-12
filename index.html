@@ -54,6 +54,11 @@
 
 ---
 
+# We already did *multiple* talks about
+# patterns and *anti-patterns*
+
+--
+
 # Let's get straight into the most 
 # *common issues*
 
@@ -154,6 +159,22 @@
 
 --
 
+# Always start with *Training*
+
+--
+
+# Then bring *Experience*
+
+--
+
+# Then *build* Documentation
+
+--
+
+# Then focus on *Convention*
+
+--
+
 # If we can’t *trust* humans
 # If we can’t *touch* Kafka
 
@@ -185,7 +206,7 @@
 
 --
 
-# Enter https://kafka.apache.org/protocol
+# Enter kafka.apache.org/protocol
 
 --
 
@@ -358,7 +379,7 @@
 ## replication factor <!-- .element: class="fragment" -->
 ## *retention* <!-- .element: class="fragment" -->
 
-note: https://cwiki.apache.org/confluence/display/KAFKA/KIP-108%3A+Create+Topic+Policy
+note: kafka-topics --bootstrap-server localhost:7070 --topic mon-jolit-opic --partitions 13 --create
 
 
 --
@@ -376,6 +397,10 @@ note: https://cwiki.apache.org/confluence/display/KAFKA/KIP-108%3A+Create+Topic+
 ## *schema* <!-- .element: class="fragment" -->
 ## batch.size <!-- .element: class="fragment" -->
 ## *keys* <!-- .element: class="fragment" -->
+
+--
+
+<img class="r-stretch" src="img/showtime.gif" alt="It's showtime gif" />
 
 --
 
@@ -412,7 +437,7 @@ note: https://cwiki.apache.org/confluence/display/KAFKA/KIP-108%3A+Create+Topic+
 --
 
 # *Gateway* is Performant
-## Because we're just rewriting *verbs*
+## Because we're just *rewriting* verbs
 
 ---
 
@@ -422,6 +447,8 @@ note: https://cwiki.apache.org/confluence/display/KAFKA/KIP-108%3A+Create+Topic+
 --
 
 # Without a kafka gateway you are *doomed to eat dirt*
+
+Note: until kafka becomes more user friendly
 
 --
 
@@ -443,7 +470,7 @@ note: https://cwiki.apache.org/confluence/display/KAFKA/KIP-108%3A+Create+Topic+
 --
 
 # Quotas
-# Headers <!-- .element: class="fragment" -->
+# *Headers* <!-- .element: class="fragment" -->
 # Chaos <!-- .element: class="fragment" -->
 # *Encryption* <!-- .element: class="fragment" -->
 # Caching <!-- .element: class="fragment" -->
@@ -454,9 +481,12 @@ note: https://cwiki.apache.org/confluence/display/KAFKA/KIP-108%3A+Create+Topic+
 
 # github.com/conduktor/conduktor-proxy-demos
 
----
+--
 
-# One *last* thing...
+## github.com/conduktor/*conduktor-gateway* 
+# is now *open*, join the *fun*!
+
+note: PR welcome, ideas welcome, if you don't know how to do stuff ping us
 
 ---
 
@@ -469,10 +499,16 @@ note: https://cwiki.apache.org/confluence/display/KAFKA/KIP-108%3A+Create+Topic+
         <img src="img/florent_bio.jpg" />
         <img src="img/loulou.png" />
     <div>
-    <h2 style="text-align: center;">
-        <a style="color: white;" href="https://github.com/conduktor/conduktor-gateway">Conduktor gateway ➚</a>
-    </h2>
-</div>
+        <h2 style="text-align: center;">
+            <a style="color: white;" href="mailto:florent@conduktor.io">florent@conduktor.io</a>
+        </h2>
+        <h2 style="text-align: center;">
+            <a style="color: white;" href="mailto:jlboudart@conduktor.io">jlboudart@conduktor.io</a>
+        </h2>
+        <h2 style="text-align: center;">
+            <a style="color: white;" href="https://github.com/conduktor/conduktor-gateway">Conduktor gateway ➚</a>
+        </h2>
+    </div>
 
             </script>
         </section>

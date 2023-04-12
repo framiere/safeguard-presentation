@@ -1,0 +1,35 @@
+kafkaSelector:
+  type: file
+  path: kafka.config
+hostPortConfiguration:
+  gatewayBindHost: 0.0.0.0
+  gatewayHost: localhost
+  portRange: 7070:7071
+authenticationConfig:
+  authenticatorType: NONE
+  userPool:
+  sslConfig:
+    updateContextIntervalMinutes: 60000
+    keyStore:
+      keyStorePath:
+      keyStorePassword:
+      keyPassword:
+      keyStoreType:
+      updateIntervalMsecs:
+threadConfig:
+  downStreamThread: 2
+  upstream:
+    numberOfThread: 4
+    maxPendingTask: 2048
+maxResponseLatency: 3000
+inFlightRequestExpiryMs: 30000
+upstreamConnectionConfig:
+  numOfConnection: 10
+  maxIdleTimeMs: 200000
+interceptors:
+  - name: devoxxInterceptor
+    pluginClass: fr.devoxx.demo.safeguard.DevoxxSafeguardPlugin
+    priority: 100
+    config:
+      - key: "x"
+        value: "y"

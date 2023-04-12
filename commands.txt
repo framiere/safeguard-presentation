@@ -1,0 +1,15 @@
+kafka-topics --bootstrap-server localhost:7070 --topic devoxxfr_safeguard --partitions 233 --create
+kafka-topics --bootstrap-server localhost:7070 --topic devoxxfr_safeguard --partitions 3 --create
+
+kafka-topics --bootstrap-server localhost:7070 --topic mon_petit_topic_a_moi --partitions 3 --create
+
+
+
+kafka-console-consumer --bootstrap-server localhost:7070 --topic devoxxfr_safeguard --from-beginning
+
+
+echo "devoxx ack pas at all " | kafka-console-producer --topic devoxxfr_safeguard --bootstrap-server localhost:7070 --producer-property 'acks=1' 
+
+echo "devoxx ack all " | kafka-console-producer --topic devoxxfr_safeguard --bootstrap-server localhost:7070 --producer-property 'acks=-1'
+
+

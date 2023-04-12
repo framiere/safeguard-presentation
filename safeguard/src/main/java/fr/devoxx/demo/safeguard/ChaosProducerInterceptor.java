@@ -16,7 +16,7 @@ import java.util.concurrent.CompletionStage;
 
 import static java.time.LocalDateTime.now;
 
-public class ProduceInterceptor implements Interceptor<ProduceRequest> {
+public class ChaosProducerInterceptor implements Interceptor<ProduceRequest> {
     @Override
     public CompletionStage<ProduceRequest> intercept(ProduceRequest request, InterceptorContext interceptorContext) {
         if (interceptorContext.direction() == DirectionType.REQUEST) {
