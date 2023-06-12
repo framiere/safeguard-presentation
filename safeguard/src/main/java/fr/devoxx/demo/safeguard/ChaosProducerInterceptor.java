@@ -4,17 +4,14 @@ import io.conduktor.gateway.interceptor.DirectionType;
 import io.conduktor.gateway.interceptor.Interceptor;
 import io.conduktor.gateway.interceptor.InterceptorContext;
 import org.apache.commons.collections4.IterableUtils;
-import org.apache.kafka.common.message.ProduceRequestData;
-import org.apache.kafka.common.record.Record;
 import org.apache.kafka.common.record.*;
 import org.apache.kafka.common.requests.ProduceRequest;
 
 import java.nio.ByteBuffer;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-
-import static java.time.LocalDateTime.now;
 
 public class ChaosProducerInterceptor implements Interceptor<ProduceRequest> {
     @Override
@@ -27,35 +24,37 @@ public class ChaosProducerInterceptor implements Interceptor<ProduceRequest> {
         return CompletableFuture.completedStage(request);
     }
 
-    private void writeYoloDevoxx(ProduceRequestData.TopicProduceData topicData) {
-        for (var partition : topicData.partitionData()) {
-            var records = (MemoryRecords) partition.records();
+    private void writeYoloDevoxx(ProduceRequest.TopicData topicData) {
+        for (ProduceRequest.PartitionData partition : topicData.partitions()) {
+            MemoryRecords records = (MemoryRecords) partition.records();
 
-            var bufSize = IterableUtils.toList(records.batches())
+            int bufSize = IterableUtils.toList(records.batches())
                     .stream()
                     .mapToInt(RecordBatch::sizeInBytes)
                     .sum();
-            var buf = ByteBuffer.allocate(bufSize * 4);
-            for (var batch : records.batches()) {
+            ByteBuffer buf = ByteBuffer.allocate(bufSize * 4);
+            for (RecordBatch batch : records.batches()) {
                 writeRecords(buf, batch);
             }
             buf.flip();
-            var newRecords = MemoryRecords.readableRecords(buf);
+            MemoryRecords newRecords = MemoryRecords.readableRecords(buf);
             partition.setRecords(newRecords);
         }
     }
 
     private void writeRecords(ByteBuffer buf, RecordBatch batch) {
-        var records = IterableUtils.toList(batch);
-        long baseOffset = records.stream()
-                .map(Record::offset)
-                .min(Comparator.comparingLong(e -> e)).orElse(0L);
+        Iterable<Record> records = IterableUtils.toList(batch);
+        long baseOffset = IterableUtils.toList(records)
+                .stream()
+                .mapToLong(Record::offset)
+                .min()
+                .orElse(0L);
 
-        try (MemoryRecordsBuilder builder = new MemoryRecordsBuilder(
+        try (MemoryRecordsBuilder builder = MemoryRecords.builder(
                 buf,
                 batch.magic(),
                 batch.compressionType(),
-                batch.timestampType(),
+                TimestampType.CREATE_TIME,
                 baseOffset,
                 RecordBatch.NO_TIMESTAMP,
                 batch.producerId(),
@@ -63,22 +62,22 @@ public class ChaosProducerInterceptor implements Interceptor<ProduceRequest> {
                 batch.baseSequence(),
                 batch.isTransactional(),
                 batch.isControlBatch(),
-                batch.partitionLeaderEpoch(),
-                buf.capacity()
+                batch.partitionLeaderEpoch()
         )) {
-            records.forEach(record -> {
-                // Here!
-                builder.append(new SimpleRecord(
-                        record.timestamp(),
-                        record.key(),
-                        ByteBuffer.allocate(record.valueSize() + 100)
-                                .put("yolo ".getBytes())
-                                .put(record.value())
-                                .put((" at " + now()).getBytes())
-                                .rewind(),
-                        record.headers()
-                ));
-            });
+            for (Record record : records) {
+                builder.append(
+                        new SimpleRecord(
+                                record.timestamp(),
+                                record.key(),
+                                ByteBuffer.allocate(record.value().remaining() + 100)
+                                        .put("yolo ".getBytes())
+                                        .put(record.value())
+                                        .put((" at " + LocalDateTime.now()).getBytes())
+                                        .rewind(),
+                                record.headers()
+                        )
+                );
+            }
             builder.build();
         }
     }
